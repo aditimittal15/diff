@@ -143,7 +143,7 @@ func (cl *Changelog) add(t string, path []string, from, to interface{}) {
 }
 
 func tagName(f reflect.StructField) string {
-	t := f.Tag.Get("diff")
+	t := f.Tag.Get("json")
 
 	parts := strings.Split(t, ",")
 	if len(parts) < 1 {
@@ -164,7 +164,7 @@ func identifier(v reflect.Value) interface{} {
 }
 
 func hasTagOption(f reflect.StructField, opt string) bool {
-	parts := strings.Split(f.Tag.Get("diff"), ",")
+	parts := strings.Split(f.Tag.Get("json"), ",")
 	if len(parts) < 2 {
 		return false
 	}
