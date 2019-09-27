@@ -61,11 +61,11 @@ A diffable value can be/contain any of the following types:
 
 ### Tags
 
-In order for struct fields to be compared, they must be tagged with a given name. All tag values are prefixed with `diff`. i.e. `diff:"items"`.
+In order for struct fields to be compared, they must be tagged with a given name. All tag values are prefixed with `json`. i.e. `json:"items"`.
 
-* `-` : In the event that you want to exclude a value from the diff, you can use the tag `diff:"-"` and the field will be ignored.
+* `-` : In the event that you want to exclude a value from the diff, you can use the tag `json:"-"` and the field will be ignored.
 
-* `identifier` : If you need to compare arrays by a matching identifier and not based on order, you can specify the `identifier` tag. If an identifiable element is found in both the from and to structures, they will be directly compared. i.e. `diff:"name,identifier"`
+* `identifier` : If you need to compare arrays by a matching identifier and not based on order, you can specify the `identifier` tag. If an identifiable element is found in both the from and to structures, they will be directly compared. i.e. `json:"name,identifier"`
 
 * `immutable` : Will omit this struct field from diffing. When using `diff.StructValues()` these values will be added to the returned changelog. It's usecase is for when we have nothing to compare a struct to and want to show all of its relevant values.
 
@@ -73,14 +73,14 @@ In order for struct fields to be compared, they must be tagged with a given name
 
 ### Basic Example
 
-Diffing a basic set of values can be accomplished using the diff functions. Any items that specify a "diff" tag using a name will be compared.
+Diffing a basic set of values can be accomplished using the diff functions. Any items that specify a "json" tag using a name will be compared.
 
 ```go
 import "github.com/r3labs/diff"
 
 type Order struct {
-    ID    string `diff:"id"`
-    Items []int  `diff:"items"`
+    ID    string `json:"id"`
+    Items []int  `json:"items"`
 }
 
 func main() {
@@ -121,8 +121,8 @@ You can create a new instance of a differ that allows options to be set.
 import "github.com/r3labs/diff"
 
 type Order struct {
-    ID    string `diff:"id"`
-    Items []int  `diff:"items"`
+    ID    string `json:"id"`
+    Items []int  `json:"items"`
 }
 
 func main() {
